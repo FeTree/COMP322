@@ -1,0 +1,20 @@
+A) What system call or calls correspond to opening the source and destination files?
+    open("/dev/dtracehelper\0", 0x2, 0xFFFFFFFFEBEB9FB0)
+    ioctl(0x3, 0x80086804, 0x7FFEEBEB9EC0)  
+    mprotect(0x103D46000, 0x1000, 0x1)  
+    access("/AppleInternal/XBS/.isChrooted\0", 0x0, 0x0)  
+    open_nocancel("input.txt\0", 0x0, 0x1B6) 
+    open_nocancel("output.txt\0", 0x601, 0x1B6)   
+
+
+B) What system call or calls correspond to reading the source file and writing the destination file?
+    sysctlbyname(kern.bootargs, 0xD, 0x7FFEEBEB9090, 0x7FFEEBEB9080, 0x0) 
+    getentropy(0x7FFEEBEB8900, 0x20, 0x0)  
+    getpid(0x0, 0x0, 0x0) 
+    stat64("/AppleInternal\0", 0x7FFEEBEB9500, 0x0)  
+    fstat64(0x3, 0x7FFEEE7B2848, 0x0)  
+
+
+C) What system call or calls correspond to closing the source and destination files?
+    close(0x3)  
+    close_nocancel(0x4)  

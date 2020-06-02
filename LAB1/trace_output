@@ -1,29 +1,38 @@
-open("/dev/dtracehelper\0", 0x2, 0xFFFFFFFFEBEB9FB0)             = 3 0
-ioctl(0x3, 0x80086804, 0x7FFEEBEB9EC0)           = 0 0
+Successful copy to output from input.txt to output.txt
+open("/dev/dtracehelper\0", 0x2, 0xFFFFFFFFEE7B1F70)             = 3 0
+ioctl(0x3, 0x80086804, 0x7FFEEE7B1E80)           = 0 0
 close(0x3)               = 0 0
-mprotect(0x103D46000, 0x1000, 0x1)               = 0 0
+mprotect(0x10144E000, 0x1000, 0x1)               = 0 0
 access("/AppleInternal/XBS/.isChrooted\0", 0x0, 0x0)             = -1 2
 bsdthread_register(0x7FFF6BF22B7C, 0x7FFF6BF22B68, 0x2000)               = 1073742047 0
-sysctlbyname(kern.bootargs, 0xD, 0x7FFEEBEB9090, 0x7FFEEBEB9080, 0x0)            = 0 0
+sysctlbyname(kern.bootargs, 0xD, 0x7FFEEE7B1050, 0x7FFEEE7B1040, 0x0)            = 0 0
 issetugid(0x0, 0x0, 0x0)                 = 0 0
-ioctl(0x2, 0x4004667A, 0x7FFEEBEB93D4)           = 0 0
-mprotect(0x103D4D000, 0x1000, 0x0)               = 0 0
-mprotect(0x103D54000, 0x1000, 0x0)               = 0 0
-mprotect(0x103D55000, 0x1000, 0x0)               = 0 0
-mprotect(0x103D5C000, 0x1000, 0x0)               = 0 0
-mprotect(0x103D4B000, 0x90, 0x1)                 = 0 0
-mprotect(0x103D5D000, 0x1000, 0x1)               = 0 0
-mprotect(0x103D4B000, 0x90, 0x3)                 = 0 0
-mprotect(0x103D4B000, 0x90, 0x1)                 = 0 0
-getentropy(0x7FFEEBEB8900, 0x20, 0x0)            = 0 0
-getentropy(0x7FFEEBEB8950, 0x40, 0x0)            = 0 0
-getpid(0x0, 0x0, 0x0)            = 56012 0
-stat64("/AppleInternal\0", 0x7FFEEBEB9500, 0x0)          = -1 2
-csops_audittoken(0xDACC, 0x7, 0x7FFEEBEB9050)            = -1 22
-proc_info(0x2, 0xDACC, 0xD)              = 64 0
-csops_audittoken(0xDACC, 0x7, 0x7FFEEBEB88D0)            = -1 22
-getrlimit(0x1008, 0x7FFEEBEBA700, 0x0)           = 0 0
-fstat64(0x1, 0x7FFEEBEBA6E8, 0x0)                = 0 0
-ioctl(0x1, 0x4004667A, 0x7FFEEBEBA734)           = 0 0
+ioctl(0x2, 0x4004667A, 0x7FFEEE7B1394)           = 0 0
+mprotect(0x101455000, 0x1000, 0x0)               = 0 0
+mprotect(0x10145C000, 0x1000, 0x0)               = 0 0
+mprotect(0x10145D000, 0x1000, 0x0)               = 0 0
+mprotect(0x101464000, 0x1000, 0x0)               = 0 0
+mprotect(0x101453000, 0x90, 0x1)                 = 0 0
+mprotect(0x101465000, 0x1000, 0x1)               = 0 0
+mprotect(0x101453000, 0x90, 0x3)                 = 0 0
+mprotect(0x101453000, 0x90, 0x1)                 = 0 0
+getentropy(0x7FFEEE7B08C0, 0x20, 0x0)            = 0 0
+getentropy(0x7FFEEE7B0910, 0x40, 0x0)            = 0 0
+getpid(0x0, 0x0, 0x0)            = 56508 0
+stat64("/AppleInternal\0", 0x7FFEEE7B14C0, 0x0)          = -1 2
+csops_audittoken(0xDCBC, 0x7, 0x7FFEEE7B1010)            = -1 22
+proc_info(0x2, 0xDCBC, 0xD)              = 64 0
+csops_audittoken(0xDCBC, 0x7, 0x7FFEEE7B0890)            = -1 22
+getrlimit(0x1008, 0x7FFEEE7B2890, 0x0)           = 0 0
+open_nocancel("input.txt\0", 0x0, 0x1B6)                 = 3 0
+open_nocancel("output.txt\0", 0x601, 0x1B6)              = 4 0
+fstat64(0x3, 0x7FFEEE7B2848, 0x0)                = 0 0
+dtrace: error on enabled probe ID 2187 (ID 951: syscall::read_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+fstat64(0x4, 0x7FFEEE7B2858, 0x0)                = 0 0
+dtrace: error on enabled probe ID 2187 (ID 951: syscall::read_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+fstat64(0x1, 0x7FFEEE7B26A8, 0x0)                = 0 0
+ioctl(0x1, 0x4004667A, 0x7FFEEE7B26F4)           = 0 0
 dtrace: error on enabled probe ID 2185 (ID 953: syscall::write_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+close_nocancel(0x3)              = 0 0
 dtrace: error on enabled probe ID 2185 (ID 953: syscall::write_nocancel:return): invalid kernel access in action #12 at DIF offset 68
+close_nocancel(0x4)              = 0 0
