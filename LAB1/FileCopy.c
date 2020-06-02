@@ -1,18 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char* argv[]) {
     //Check command line arguments
-    printf("Program name: %s", argv[0]);
     if(argc == 2) {
         printf("\n Invalid input, not enough arguments\n");
     }
     else if(argc == 3){
-        printf("\nNumber of CLI arguments: %d\n", argc);
-
-        for(int i = 0; i < argc; i++) {
-            printf("\nargv[%d]: %s", i, argv[i]);
-        }
+        // printf("\nNumber of CLI arguments: %d\n", argc);
     }
     else {
         printf("\nExceeded limit of arguments\n");
@@ -21,9 +17,14 @@ int main(int argc, char* argv[]) {
     // Our files
     FILE *inputFile;
     FILE *outputFile;
-    char inputFileName[100] = argv[1];
-    char outputFileName[100] = argv[2];
+    char inputFileName[100];
+    char outputFileName[100];
     char c; // used to parse through input 
+
+    //Assign filenames from command line
+    strcpy(inputFileName, argv[1]);
+    strcpy(outputFileName, argv[2]);
+    
 
     // Open input file
     inputFile = fopen(inputFileName, "r");
