@@ -1,8 +1,8 @@
 CC=gcc
 CFLAGS=-I.
 
-h1: main.o hello.o world.o
-	gcc -o h1 main.o hello.o world.o
+h: main.o hello.o world.o
+	gcc -o h main.o hello.o world.o
 
 main.o : main.c 
 	gcc -c main.c
