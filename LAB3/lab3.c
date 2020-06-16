@@ -9,18 +9,43 @@ LAB 3
 #include <unistd.h>
 #include <pthread.h>
 
-void *func(void *var) {
-    sleep(2);
-    printf("we are using thread\n");
+// Globals
+int average;
+int maximum;
+int minimum;
+int numbers[100];
+int lengthOfNumberList;
+
+void *findAverage() {
+    int sum = 0;
+    for(int i = 0; i < lengthOfNumberList ; i++){
+        printf("%d\n", numbers[i]);
+        sum += numbers[i];
+    }
+
+    average = sum / lengthOfNumberList;
     return NULL;
 }
 
 int main() {
-    pthread_t t_id;
-    printf("Before using threading\n");
-    pthread_create(&t_id, NULL, func, NULL);
-    pthread_join(t_id, NULL);
+    // Generate random numbers 
+    lengthOfNumberList = 0;
+    printf("Enter how many numbers to be generated (between 0-100)\n");
+    scanf("%d", &lengthOfNumberList);
 
-    printf("After threading \n");
+    //Store random numbers in array
+    for(int i = 0; i < lengthOfNumberList; i++){
+        numbers[i] = rand() % 101;
+    }
+
+    // Thread 1
+    pthread_t t_id_1;
+    printf("Before using threading\n");
+    pthread_create(&t_id_1, NULL, findAverage, NULL);
+    pthread_join(t_id_1, NULL);
+
+    printf("Average: %d\n", average);
+
+
     exit(0);
 }
