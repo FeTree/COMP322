@@ -5,10 +5,22 @@ LAB 3
 */
 
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
+
+void *func(void *var) {
+    sleep(2);
+    printf("we are using thread\n");
+    return NULL;
+}
 
 int main() {
-    printf("Hello\n"); 
+    pthread_t t_id;
+    printf("Before using threading\n");
+    pthread_create(&t_id, NULL, func, NULL);
+    pthread_join(t_id, NULL);
+
+    printf("After threading \n");
+    exit(0);
 }
