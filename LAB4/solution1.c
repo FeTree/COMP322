@@ -20,6 +20,8 @@ void put_chopsticks(int);
 
 int phil_num[N] = {0, 1, 2, 3, 4}; //philosopher ID
 
+int current = 0; //global to track number of philosophers
+
 int main()
 {
     int i;
@@ -31,6 +33,7 @@ int main()
     for (i = 0; i < N; i++)
         pthread_join(thread_id[i], NULL);
 }
+
 void *philospher(void *num)
 {
     while (1)
@@ -43,19 +46,28 @@ void *philospher(void *num)
 void take_chopsticks(int ph_num)
 {
     printf("Philosopher %d is Hungry\n", ph_num);
-    sem_wait(&S[ph_num]);           //take the left chopstick 
-    printf("Philosopher %d takes chopstick %d \n", ph_num, ph_num);
-    sleep(1);
-    sem_wait(&S[(ph_num + 1) % N]); //take the right chopstick 
-    printf("Philosopher %d takes chopstick %d \n",ph_num,(ph_num + 1) % N); 
-    printf("Philosopher %d is eating\n",ph_num);
-    sleep(1);
+    //ensure that at most 4 philosophers sitting at table
+    if(current < 4) { 
+        current++;
+        sem_wait(&S[ph_num % N]); // take left chopstick
+        printf("Philosopher %d takes chopstick %d \n", ph_num, ph_num);
+        sleep(1);
+
+        sem_wait(&S[(ph_num + 1) % N]); //take the right chopstick 
+        printf("Philosopher %d takes chopstick %d \n",ph_num,(ph_num + 1) % N); 
+        sleep(1);
+    }
+    
 }
 void put_chopsticks(int ph_num)
 {
     sem_post(&S[ph_num]); //put the left chopstick
     printf("Philosopher %d putting chopstick %d \n", ph_num, ph_num);
     sleep(1);
-    sem_post(&S[(ph_num + 1) % N]); //put the right chopstick printf("Philosopher %d putting chopstick %d \n", ph_num, (ph_num + 1) % N); printf("Philosopher %d is thinking\n", ph_num);
+    sem_post(&S[(ph_num + 1) % N]); //put the right chopstick 
+    printf("Philosopher %d putting chopstick %d \n", ph_num, (ph_num + 1) % N);
+    current--;
+    printf("Philosopher %d is thinking\n", ph_num);
     sleep(1);
+
 }
