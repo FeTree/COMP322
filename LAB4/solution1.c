@@ -46,9 +46,12 @@ void *philospher(void *num)
 void take_chopsticks(int ph_num)
 {
     printf("Philosopher %d is Hungry\n", ph_num);
+
     //ensure that at most 4 philosophers sitting at table
+    printf("currentdude: %d\n", current);
+    current++;
     if(current < 4) { 
-        current++;
+    
         sem_wait(&S[ph_num % N]); // take left chopstick
         printf("Philosopher %d takes chopstick %d \n", ph_num, ph_num);
         sleep(1);
@@ -66,8 +69,9 @@ void put_chopsticks(int ph_num)
     sleep(1);
     sem_post(&S[(ph_num + 1) % N]); //put the right chopstick 
     printf("Philosopher %d putting chopstick %d \n", ph_num, (ph_num + 1) % N);
-    current--;
+
     printf("Philosopher %d is thinking\n", ph_num);
     sleep(1);
 
-}
+    current--;
+} 
